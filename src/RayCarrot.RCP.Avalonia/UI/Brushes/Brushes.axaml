@@ -2,12 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Colors/Colors.MaterialDesign.axaml" />
-        <ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Colors/Colors.Brands.axaml" />
-        <ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Colors/Colors.GameBanana.axaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <!-- Main -->
     <SolidColorBrush x:Key="RCP.Brushes.Games" Color="{StaticResource RCP.Colors.PurplePrimary500}" />
     <SolidColorBrush x:Key="RCP.Brushes.Progression" Color="{StaticResource RCP.Colors.PinkPrimary500}" />

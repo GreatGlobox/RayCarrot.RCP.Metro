@@ -15,8 +15,11 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Icons/Icons.axaml" />
-				<ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Brushes/Brushes.axaml" />
+				<ResourceInclude Source="./UI/Icons/Icons.axaml" />
+				<ResourceInclude Source="./UI/Brushes/Brushes.axaml" />
+				<ResourceInclude Source="./UI/Colors/Colors.MaterialDesign.axaml" />
+				<ResourceInclude Source="./UI/Colors/Colors.Brands.axaml" />
+				<ResourceInclude Source="./UI/Colors/Colors.GameBanana.axaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
