@@ -1,0 +1,128 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+        xmlns:iconPacks="clr-namespace:IconPacks.Avalonia.Material;assembly=IconPacks.Avalonia.Material"
+        x:Class="RayCarrot.RCP.Metro.MainWindow"
+        Title="Rayman Control Panel"
+        Width="960" Height="720"
+        Background="#202020"> <!--TODO: This colour shouldn't be hardcoded-->
+
+	
+	<!--TODO: Re-implement all of these later
+		xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+        xmlns:about="clr-namespace:RayCarrot.RCP.Metro.Pages.About"
+        xmlns:debug="clr-namespace:RayCarrot.RCP.Metro.Pages.Debug"
+        xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
+        xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings"
+        xmlns:utilities="clr-namespace:RayCarrot.RCP.Metro.Pages.Utilities"-->
+
+	<!-- Styling for tab selection -->
+	<Window.Styles>
+		<Style Selector="TabItem">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Border Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Padding="{TemplateBinding Padding}">
+							<ContentPresenter
+							  Content="{TemplateBinding Header}"
+							  VerticalAlignment="Center"
+							  HorizontalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<Style Selector="TabItem">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="8 8 8 -4" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderBrush" Value="#FFFFFF" />
+			<Setter Property="BorderThickness" Value="0 0 0 2" />
+		</Style>
+
+		<!-- Remove default selection underline -->
+		<Style Selector="TabControl">
+			<Setter Property="SelectedValue" Value="Transparent"/>
+		</Style>
+
+		<!-- Hover -->
+		<Style Selector="TabItem:pointerover">
+			<Setter Property="Foreground" Value="#909090" />
+			<Setter Property="BorderBrush" Value="#909090" />
+		</Style>
+
+		<!-- Selected -->
+		<Style Selector="TabItem:selected">
+			<Setter Property="Foreground" Value="#9070FF" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderBrush" Value="#9070FF" />
+		</Style>
+
+		<!-- Selected + hover -->
+		<Style Selector="TabItem:selected:pointerover">
+			<Setter Property="Foreground" Value="#7050CF" />
+			<Setter Property="BorderBrush" Value="#7050CF" />
+		</Style>
+	</Window.Styles>
+
+	<!-- Window selection tabs -->
+	<Grid HorizontalAlignment="Center">
+		<TabControl>
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+						<iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Games}" VerticalAlignment="Center" Width="20" Height="20" Foreground="{StaticResource RCP.Brushes.Games}"/>
+						<TextBlock Text="Games" VerticalAlignment="Center" />
+					</StackPanel>
+				</TabItem.Header>
+				<!-- Tab Content -->
+			</TabItem>
+
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+						<iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Progression}" VerticalAlignment="Center" Width="20" Height="20" Foreground="{StaticResource RCP.Brushes.Progression}"/>
+						<TextBlock Text="Progression" VerticalAlignment="Center" />
+					</StackPanel>
+				</TabItem.Header>
+				<!-- Tab Content -->
+			</TabItem>
+
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+						<iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Utilities}" VerticalAlignment="Center" Width="20" Height="20" Foreground="{StaticResource RCP.Brushes.Utilities}"/>
+						<TextBlock Text="Utilities" VerticalAlignment="Center" />
+					</StackPanel>
+				</TabItem.Header>
+				<!-- Tab Content -->
+			</TabItem>
+
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+						<iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Settings}" VerticalAlignment="Center" Width="20" Height="20" Foreground="{StaticResource RCP.Brushes.Settings}"/>
+						<TextBlock Text="Settings" VerticalAlignment="Center" />
+					</StackPanel>
+				</TabItem.Header>
+				<!-- Tab Content -->
+			</TabItem>
+
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+						<iconPacks:PackIconMaterial Kind="{StaticResource RCP.Icons.Info}" VerticalAlignment="Center" Width="20" Height="20" Foreground="{StaticResource RCP.Brushes.Info}"/>
+						<TextBlock Text="About" VerticalAlignment="Center" />
+					</StackPanel>
+				</TabItem.Header>
+				<!-- Tab Content -->
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>

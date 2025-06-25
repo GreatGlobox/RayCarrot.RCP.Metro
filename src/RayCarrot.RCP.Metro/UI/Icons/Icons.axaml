@@ -1,0 +1,304 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:iconPacks="clr-namespace:IconPacks.Avalonia.Material;assembly=IconPacks.Avalonia.Material">
+
+    <!-- TODO: A lot of icons are hard-coded throughout the app when referenced directly from XAML. Move them here! -->
+
+    <!-- Icons -->
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Games">GamepadVariantOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Progression">TrophyVariantOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities">BriefcaseOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Settings">CogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Info">InformationOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_BinaryTools">Hexadecimal</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Other">DatabaseOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClient">ApplicationOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClientEdit">ApplicationEditOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameClientSettings">ApplicationCogOutline</iconPacks:PackIconMaterialKind>
+    
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Play">PlayOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Admin">Security</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.File">FileOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileAdd">FilePlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileRemove">FileRemoveOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileEdit">FileEditOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FileReplace">FileReplaceOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Folder">FolderOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Archive">FolderZipOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.FolderSearch">FolderSearchOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Download">DownloadOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.CloudDownload">CloudDownloadOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Disc">Disc</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Purchase">ShoppingOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Edit">PencilOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Program">ApplicationOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.News">TooltipTextOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Link">Link</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Language">Earth</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.User">AccountOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Design">PaletteOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Startup">Power</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.List">ViewListOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Fix">AutoFix</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.SetupGame">WrenchOutline</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Finder">Magnify</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.RomFinder">FolderSearchOutline</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.EditJumpList">PencilBoxOutline</iconPacks:PackIconMaterialKind>
+    
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Web">Earth</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Steam">Steam</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Microsoft">MicrosoftWindows</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModLoader">ArchiveOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModLoaderDownload">ArchiveArrowDownOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.ModCreator">ArchivePlusOutline</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_ArchiveCreator">FolderMultiplePlusOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Ray1Editor">PencilOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_R1PasswordGenerator">KeyOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.Utilities_Serializers">CodeJson</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PrototypeRestoration">MapOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_RuntimeModifications">Memory</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="RCP.Icons.GameTools_PerLevelSoundtrack">MusicNoteOutline</iconPacks:PackIconMaterialKind>
+
+    <!-- Generic Icons (used from C# code) -->
+
+	<!--
+	<local:GenericIcon x:Key="{x:Static local:GenericIconKind.None}" 
+                       IconKind="{x:Static iconPacks:PackIconMaterialKind.None}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAction_Play}" 
+                       IconKind="{StaticResource RCP.Icons.Play}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAction_RunAsAdmin}" 
+                       IconKind="{StaticResource RCP.Icons.Admin}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAction_Location}" 
+                       IconKind="{StaticResource RCP.Icons.Folder}" 
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAction_Web}" 
+                       IconKind="{StaticResource RCP.Icons.Web}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAction_Steam}" 
+                       IconKind="{StaticResource RCP.Icons.Steam}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAction_Microsoft}" 
+                       IconKind="{StaticResource RCP.Icons.Microsoft}" 
+                       IconColor="{x:Null}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Archive}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Settings}" 
+                       IconKind="{StaticResource RCP.Icons.Settings}" 
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_SetupGame}" 
+                       IconKind="{StaticResource RCP.Icons.SetupGame}" 
+                       IconColor="{StaticResource RCP.Brushes.SetupGame}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Progression}" 
+                       IconKind="{StaticResource RCP.Icons.Progression}" 
+                       IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_Utilities}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities}" 
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_ModLoader}" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}" 
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_PrototypeRestoration}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_RuntimeModification}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameFeature_PerLevelSoundtrack}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PerLevelSoundtrack}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_Archive}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}" 
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_ModLoader}" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}" 
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_Progression}" 
+                       IconKind="{StaticResource RCP.Icons.Progression}" 
+                       IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_PrototypeRestoration}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_RuntimeModification}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GamePanel_PerLevelSoundtrack}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PerLevelSoundtrack}" 
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Locate}" 
+                       IconKind="{StaticResource RCP.Icons.Folder}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_DiscInstall}" 
+                       IconKind="{StaticResource RCP.Icons.Disc}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Download}" 
+                       IconKind="{StaticResource RCP.Icons.CloudDownload}" 
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.GameAdd_Purchase}" 
+                       IconKind="{StaticResource RCP.Icons.Purchase}" 
+                       IconColor="{x:Null}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Mod}" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameSettings}" 
+                       IconKind="{StaticResource RCP.Icons.Settings}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClientGameSettings}" 
+                       IconKind="{StaticResource RCP.Icons.GameClientSettings}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_GameClient}" 
+                       IconKind="{StaticResource RCP.Icons.GameClient}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_FileReplacement}" 
+                       IconKind="{StaticResource RCP.Icons.FileReplace}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Fix}" 
+                       IconKind="{StaticResource RCP.Icons.Fix}"
+                       IconColor="{x:Null}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.SetupGame_Download}" 
+                       IconKind="{StaticResource RCP.Icons.Download}"
+                       IconColor="{x:Null}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Language}" 
+                       IconKind="{StaticResource RCP.Icons.Language}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_UserLevel}" 
+                       IconKind="{StaticResource RCP.Icons.User}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_General}" 
+                       IconKind="{StaticResource RCP.Icons.Settings}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Design}" 
+                       IconKind="{StaticResource RCP.Icons.Design}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Startup}" 
+                       IconKind="{StaticResource RCP.Icons.Startup}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Files}" 
+                       IconKind="{StaticResource RCP.Icons.File}"
+                       IconColor="{StaticResource RCP.Brushes.File}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_WindowsIntegration}" 
+                       IconKind="{StaticResource RCP.Icons.Microsoft}"
+                       IconColor="{StaticResource RCP.Brushes.Windows11}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Progression}" 
+                       IconKind="{StaticResource RCP.Icons.Progression}"
+                       IconColor="{StaticResource RCP.Brushes.Progression}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_ArchiveExplorer}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_ModLoader}" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}"
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Settings_Debug}" 
+                       IconKind="{StaticResource RCP.Icons.Debug}"
+                       IconColor="{StaticResource RCP.Brushes.Debug}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ArchiveExplorer}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ArchiveCreator}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveCreator}"
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ModLoader}" 
+                       IconKind="{StaticResource RCP.Icons.ModLoader}"
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ModCreator}" 
+                       IconKind="{StaticResource RCP.Icons.ModCreator}"
+                       IconColor="{StaticResource RCP.Brushes.ModLoader}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GameSettings}" 
+                       IconKind="{StaticResource RCP.Icons.Settings}"
+                       IconColor="{StaticResource RCP.Brushes.Settings}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_Installer}" 
+                       IconKind="{StaticResource RCP.Icons.Disc}"
+                       IconColor="{StaticResource RCP.Brushes.Games}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_Downloader}" 
+                       IconKind="{StaticResource RCP.Icons.CloudDownload}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_DriveSelection}" 
+                       IconKind="{StaticResource RCP.Icons.Disc}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ItemSelection}" 
+                       IconKind="{StaticResource RCP.Icons.List}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GamesSelection}" 
+                       IconKind="{StaticResource RCP.Icons.Games}"
+                       IconColor="{StaticResource RCP.Brushes.Games}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_JumpListEdit}" 
+                       IconKind="{StaticResource RCP.Icons.EditJumpList}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_DialogMessage}" 
+                       IconKind="{StaticResource RCP.Icons.Info}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_StringInput}" 
+                       IconKind="{StaticResource RCP.Icons.Edit}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_ProgramSelection}" 
+                       IconKind="{StaticResource RCP.Icons.Program}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_AppNews}" 
+                       IconKind="{StaticResource RCP.Icons.News}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_AddGames}" 
+                       IconKind="{StaticResource RCP.Icons.Games}"
+                       IconColor="{StaticResource RCP.Brushes.Games}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GameClientsSetup}" 
+                       IconKind="{StaticResource RCP.Icons.GameClientEdit}"
+                       IconColor="{StaticResource RCP.Brushes.GameClient}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GameDebug}" 
+                       IconKind="{StaticResource RCP.Icons.Debug}"
+                       IconColor="{StaticResource RCP.Brushes.Debug}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_GameClientDebug}" 
+                       IconKind="{StaticResource RCP.Icons.Debug}"
+                       IconColor="{StaticResource RCP.Brushes.Debug}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_AnniversaryUpdate}" 
+                       IconKind="{StaticResource RCP.Icons.News}"
+                       IconColor="{StaticResource RCP.Brushes.Info}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_PrototypeRestoration}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_PrototypeRestoration}"
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Window_RuntimeModifications}" 
+                       IconKind="{StaticResource RCP.Icons.GameTools_RuntimeModifications}"
+                       IconColor="{StaticResource RCP.Brushes.GameTools}" />
+
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_ArchiveExplorer}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_ArchiveExplorer}"
+                       IconColor="{StaticResource RCP.Brushes.ArchiveExplorer}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Ray1Editor}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_Ray1Editor}"
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_R1PasswordGenerator}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_R1PasswordGenerator}"
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Converters}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_Converters}"
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Decoders}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_Decoders}"
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+    <local:GenericIcon x:Key="{x:Static local:GenericIconKind.Utilities_Serializers}" 
+                       IconKind="{StaticResource RCP.Icons.Utilities_Serializers}"
+                       IconColor="{StaticResource RCP.Brushes.Utilities}" />
+-->
+</ResourceDictionary>

@@ -1,16 +1,15 @@
-﻿using System.Windows.Media;
-using MahApps.Metro.IconPacks;
+﻿using Avalonia.Media;
 
 namespace RayCarrot.RCP.Metro;
 
 public struct GenericIcon
 {
-    public GenericIcon(PackIconMaterialKind iconKind, Brush iconColor)
+    public GenericIcon(string iconKey, IBrush iconColor)
     {
-        IconKind = iconKind;
+        IconKey = iconKey;
         IconColor = iconColor;
     }
 
-    public PackIconMaterialKind IconKind { get; set; }
-    public Brush IconColor { get; set; }
+    public string IconKey { get; set; }   // Icon name or resource key
+    public IBrush IconColor { get; set; } // Avalonia brush
 }
