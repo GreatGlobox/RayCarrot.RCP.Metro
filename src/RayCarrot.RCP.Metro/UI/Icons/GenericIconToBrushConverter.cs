@@ -1,28 +1,12 @@
-﻿using System;
-using System.Globalization;
-using Avalonia.Data.Converters;
-using Avalonia.Media;
+﻿using System.Globalization;
+using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Metro;
+
+public class GenericIconToBrushConverter : BaseValueConverter<GenericIconToBrushConverter, GenericIconKind, Brush>
 {
-    public class GenericIconToBrushConverter : IValueConverter
+    public override Brush ConvertValue(GenericIconKind value, Type targetType, object parameter, CultureInfo culture)
     {
-        public static readonly GenericIconToBrushConverter Instance = new GenericIconToBrushConverter();
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is string iconKey && Avalonia.Application.Current?.Resources.TryGetResource(iconKey, null, out var resource) == true)
-            {
-                if (resource is GenericIcon icon)
-                    return icon.IconColor;
-            }
-
-            return Brushes.Transparent;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        return ((GenericIcon)App.Current.FindResource(value)).IconColor;
     }
 }

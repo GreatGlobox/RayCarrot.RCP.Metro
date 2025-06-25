@@ -1,0 +1,192 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:archive="clr-namespace:RayCarrot.RCP.Metro.Archive"
+                    mc:Ignorable="d">
+
+    <!-- File (single) -->
+
+    <ContextMenu x:Key="FileContextMenu_Single"
+                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                 d:DataContext="{d:DesignInstance archive:FileViewModel}">
+
+        <!-- View/Edit -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ViewEditFile}"
+                            IconKind="FileEditOutline"
+                            ItemsSource="{Binding Path=EditActions, Mode=OneTime}">
+            <local:MenuItemIcon.ItemContainerStyle>
+                <Style TargetType="{x:Type MenuItem}">
+                    <Setter Property="Command" Value="{Binding Path=MenuCommand, Mode=OneTime}" />
+                    <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}" />
+                </Style>
+            </local:MenuItemIcon.ItemContainerStyle>
+        </local:MenuItemIcon>
+
+        <!-- Rename -->
+
+        <local:MenuItemIcon Header="{Resx Archive_Rename}"
+                            Command="{Binding Path=RenameCommand, Mode=OneTime}"
+                            InputGestureText="F2"
+                            IconKind="PencilOutline" />
+
+        <Separator />
+
+        <!-- Export -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ExportFile}"
+                            IconKind="FileExportOutline"
+                            ItemsSource="{Binding Path=FileExports, Mode=OneTime}">
+            <local:MenuItemIcon.ItemContainerStyle>
+                <Style TargetType="{x:Type MenuItem}">
+                    <Setter Property="Command" Value="{Binding Path=MenuCommand, Mode=OneTime}" />
+                    <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}" />
+                </Style>
+            </local:MenuItemIcon.ItemContainerStyle>
+        </local:MenuItemIcon>
+
+        <!-- Import -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
+                            Command="{Binding Path=ImportCommand, Mode=OneTime}"
+                            IconKind="FileImportOutline"
+                            IsEnabled="{Binding Path=CanImport}" />
+
+        <!-- Replace -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ReplaceFile}"
+                            Command="{Binding Path=ReplaceCommand, Mode=OneTime}"
+                            IconKind="FileReplaceOutline" />
+
+        <Separator />
+
+        <!-- Copy file path -->
+
+        <local:MenuItemIcon Header="{Resx Archive_CopyFilePath}"
+                            Command="{x:Static local:CommonCommands.CopyToClipboardCommand}"
+                            CommandParameter="{Binding Path=FullFilePath, Mode=OneTime}"
+                            IconKind="ClipboardOutline" />
+
+        <Separator />
+
+        <!-- Delete -->
+
+        <local:MenuItemIcon Header="{Resx Archive_Delete}"
+                            Command="{Binding Path=DeleteCommand, Mode=OneTime}"
+                            IconForeground="{StaticResource RCP.Brushes.DeleteItem}"
+                            InputGestureText="Del"
+                            IconKind="DeleteOutline" />
+
+    </ContextMenu>
+
+    <!-- File (multi) -->
+
+    <ContextMenu x:Key="FileContextMenu_Multi"
+                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                 d:DataContext="{d:DesignInstance archive:FileViewModel}">
+
+        <!-- Extract -->
+
+        <local:MenuItemIcon Header="{Resx Archive_Extract}"
+                            Command="{Binding Path=Directory.ExtractSelectedFilesCommand}"
+                            IconKind="ApplicationExport" />
+
+        <!-- Export -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
+                            Command="{Binding Path=Directory.ExportSelectedFilesCommand}"
+                            IconKind="Export" />
+
+        <Separator />
+
+        <!-- Delete -->
+
+        <local:MenuItemIcon Header="{Resx Archive_Delete}"
+                            Command="{Binding Path=Directory.DeleteSelectedFilesCommand, Mode=OneTime}"
+                            IconForeground="{StaticResource RCP.Brushes.DeleteItem}"
+                            InputGestureText="Del"
+                            IconKind="DeleteOutline" />
+
+    </ContextMenu>
+
+    <!-- Directory (single) -->
+
+    <ContextMenu x:Key="DirContextMenu_Single"
+                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                 d:DataContext="{d:DesignInstance archive:DirectoryViewModel}">
+
+        <!-- Extract -->
+
+        <local:MenuItemIcon Header="{Resx Archive_Extract}"
+                            ToolTip="{Resx Archive_Extract_Info}"
+                            Command="{Binding Path=ExtractCommand}"
+                            IconKind="ApplicationExport" />
+
+        <!-- Add Files -->
+
+        <local:MenuItemIcon Header="{Resx Archive_AddFiles}"
+                            ToolTip="{Resx Archive_AddFiles_Info}"
+                            Command="{Binding Path=AddFilesCommand}"
+                            IconKind="FilePlusOutline" />
+
+        <Separator />
+
+        <!-- Export -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
+                            ToolTip="{Resx Archive_ExportConvert_Info}"
+                            Command="{Binding Path=ExportCommand}"
+                            IconKind="Export" />
+
+        <!-- Import -->
+
+        <local:MenuItemIcon Header="{Resx Archive_ImportConvert}"
+                            ToolTip="{Resx Archive_ImportConvert_Info}"
+                            Command="{Binding Path=ImportCommand}"
+                            IconKind="Import" />
+
+        <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}"/>
+
+        <!-- Copy directory path -->
+
+        <local:MenuItemIcon Header="{Resx Archive_CopyDirPath}"
+                            Command="{x:Static local:CommonCommands.CopyToClipboardCommand}"
+                            CommandParameter="{Binding Path=FullPath, Mode=OneTime}"
+                            IconKind="ClipboardOutline"
+                            Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:InvertedBooleanToVisibilityConverter}}" />
+
+        <Separator />
+
+        <!-- Create -->
+
+        <local:MenuItemIcon Header="{Resx Archive_CreateDir}"
+                            ToolTip="{Resx Archive_CreateDir_Info}"
+                            Command="{Binding Path=CreateDirectoryCommand}"
+                            IconForeground="{StaticResource RCP.Brushes.AddItem}"
+                            IconKind="FolderPlusOutline"
+                            IsEnabled="{Binding Path=CanAddSubDirectory, Mode=OneTime}" />
+
+        <!-- Delete -->
+
+        <local:MenuItemIcon Header="{Resx Archive_Delete}"
+                            ToolTip="{Resx Archive_DeleteDir_Info}"
+                            Command="{Binding Path=DeleteCommand}"
+                            IconForeground="{StaticResource RCP.Brushes.DeleteItem}"
+                            IconKind="DeleteOutline"
+                            InputGestureText="Del"
+                            IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}" />
+
+        <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}" />
+
+        <!-- Open Location -->
+
+        <local:MenuItemIcon Header="{Resx GameDisplay_OpenLocation}"
+                            Command="{Binding Path=OpenLocationCommand}"
+                            IconKind="FolderOutline"
+                            Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={local:BooleanToVisibilityConverter}}" />
+
+    </ContextMenu>
+
+</ResourceDictionary>

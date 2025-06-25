@@ -1,0 +1,193 @@
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.AnniversaryUpdateDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            mc:Ignorable="d"
+                            d:DesignWidth="900"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}">
+
+    <local:WindowContentControl.Resources>
+        <Style x:Key="AnniversaryDialog.Styles.TextBlock.Default" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="AnniversaryDialog.Styles.TextBlock.Header" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource RCP.Styles.TextBlock.Header}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </local:WindowContentControl.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <local:Card Grid.Row="0"
+                    Margin="{StaticResource RCP.Thicknesses.Card}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource RCP.Styles.TextBlock.HeaderLarge}"
+                           FontSize="26"
+                           TextWrapping="Wrap"
+                           Text="{Resx AnniversaryUpdate_Header}" 
+                           FontFamily="{StaticResource RCP.Fonts.RaymanOrigins}"
+                           Margin="0 0 0 8" />
+
+                <ScrollViewer Grid.Row="1"
+                              Padding="8">
+                    <StackPanel>
+
+                        <local:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                                    Margin="{StaticResource RCP.Thicknesses.Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="8" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" 
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_GamesHeader}"
+                                               Foreground="{StaticResource RCP.Brushes.Games}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                               Margin="0 0 0 4" />
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_GamesDescription}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                                </StackPanel>
+
+                                <local:Card Grid.Column="2" 
+                                            Padding="0"
+                                            Margin="{StaticResource RCP.Thicknesses.Card}">
+                                    <Image Source="GamesPage.png"
+                                           RenderOptions.BitmapScalingMode="HighQuality" />
+                                </local:Card>
+
+                            </Grid>
+                        </local:Card>
+
+                        <local:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                                    Margin="{StaticResource RCP.Thicknesses.Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="8" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <local:Card Grid.Column="0" 
+                                            Padding="0"
+                                            Margin="{StaticResource RCP.Thicknesses.Card}">
+                                    <Image Source="Clients.png"
+                                           RenderOptions.BitmapScalingMode="HighQuality"  />
+                                </local:Card>
+
+                                <StackPanel Grid.Column="2"
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_ClientsHeader}"
+                                               Foreground="{StaticResource RCP.Brushes.GameClient}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                               Margin="0 0 0 4" />
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_ClientsDescription}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                                </StackPanel>
+
+                            </Grid>
+                        </local:Card>
+                        
+                        <local:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                                    Margin="{StaticResource RCP.Thicknesses.Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="8" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0"
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_ModLoaderHeader}"
+                                               Foreground="{StaticResource RCP.Brushes.ModLoader}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                               Margin="0 0 0 4" />
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_ModLoaderDescription}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                                </StackPanel>
+
+                                <local:Card Grid.Column="2" 
+                                            Padding="0"
+                                            Margin="{StaticResource RCP.Thicknesses.Card}">
+                                    <Image Source="ModManager.png"
+                                           RenderOptions.BitmapScalingMode="HighQuality"  />
+                                </local:Card>
+
+                            </Grid>
+                        </local:Card>
+
+                        <local:Card Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+                                    Margin="{StaticResource RCP.Thicknesses.Card}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="8" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <local:Card Grid.Column="0" 
+                                            Padding="0"
+                                            Margin="{StaticResource RCP.Thicknesses.Card}">
+                                    <Image Source="TextureSync.png"
+                                           RenderOptions.BitmapScalingMode="HighQuality"  />
+                                </local:Card>
+
+                                <StackPanel Grid.Column="2"
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_TextureSyncHeader}"
+                                               Foreground="{StaticResource RCP.Brushes.ArchiveExplorer}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Header}"
+                                               Margin="0 0 0 4" />
+
+                                    <TextBlock Text="{Resx AnniversaryUpdate_TextureSyncDescription}"
+                                               Style="{StaticResource AnniversaryDialog.Styles.TextBlock.Default}" />
+
+                                </StackPanel>
+
+                            </Grid>
+                        </local:Card>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+        </local:Card>
+
+        <Button Grid.Row="1"
+                Margin="{StaticResource RCP.Thicknesses.Card}"
+                Style="{StaticResource RCP.Styles.Button.Default}"
+                Content="{Resx Continue}"
+                IsDefault="True"
+                Click="ButtonBase_OnClick"/>
+
+    </Grid>
+</local:WindowContentControl>

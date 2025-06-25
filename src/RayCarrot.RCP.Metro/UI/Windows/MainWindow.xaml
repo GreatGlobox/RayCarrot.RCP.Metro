@@ -1,0 +1,235 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
+                  xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+                  xmlns:about="clr-namespace:RayCarrot.RCP.Metro.Pages.About"
+                  xmlns:debug="clr-namespace:RayCarrot.RCP.Metro.Pages.Debug"
+                  xmlns:progression="clr-namespace:RayCarrot.RCP.Metro.Pages.Progression"
+                  xmlns:settings="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings"
+                  xmlns:utilities="clr-namespace:RayCarrot.RCP.Metro.Pages.Utilities"
+                  mc:Ignorable="d"
+                  Language="{UICulture}" 
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                  Title="{Binding Path=AppTitle, Mode=OneTime}"
+                  CloseWithEscape="False"
+                  IsCloseButtonEnabled="{Binding Path=App.LoaderViewModel.IsRunning, Converter={local:InvertedBooleanConverter}}"
+                  Width="960" Height="720"
+                  Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                  Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                  d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
+    <local:BaseWindow.RightWindowCommands>
+        <mah:WindowCommands ItemsSource="{Binding Source={x:Static local:RCPChildWindow.MinimizedWindows}, Mode=OneTime}"> 
+            <mah:WindowCommands.ItemTemplate>
+                <DataTemplate>
+                    <Button DataContext="{Binding Path=Window, Mode=OneTime}" 
+                            Command="{Binding Path=ToggleMinimizedCommand, Mode=OneTime}"
+                            ToolTip="{Binding Path=Title, Mode=OneTime}">
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}}"
+                                                    Foreground="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}}"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+                    </Button>
+                </DataTemplate>
+            </mah:WindowCommands.ItemTemplate>
+        </mah:WindowCommands>
+    </local:BaseWindow.RightWindowCommands>
+    <local:LoadingHost local:LoadingHostAssist.ViewModel="{Binding Path=App.LoaderViewModel, Mode=OneTime}">
+        <Grid>
+            <mah:MetroAnimatedTabControl x:Name="PageTabControl"
+                                         ItemContainerStyle="{StaticResource RCP.Styles.TabItem.Large}"
+                                         Padding="5">
+                <!-- Override the style to use the overflow menu -->
+                <mah:MetroAnimatedTabControl.Style>
+                    <Style TargetType="{x:Type mah:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type mah:MetroAnimatedTabControl}}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type mah:MetroAnimatedTabControl}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition x:Name="ColumnDefinition0" />
+                                            <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition x:Name="RowDefinition0" Height="Auto" />
+                                            <RowDefinition x:Name="RowDefinition1" Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid x:Name="HeaderPanelGrid"
+                                              Grid.Row="0"
+                                              Grid.Column="0"
+                                              Margin="{TemplateBinding TabStripMargin}"
+                                              Panel.ZIndex="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <mah:Underline x:Name="Underline"
+                                                           Grid.Column="0"
+                                                           Background="Transparent"
+                                                           BorderBrush="{TemplateBinding mah:TabControlHelper.UnderlineBrush}"
+                                                           LineThickness="1"
+                                                           Placement="Bottom"
+                                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                           Visibility="Collapsed" />
+
+                                            <TabPanel x:Name="HeaderPanel"
+                                                      Grid.Column="0"
+                                                      IsItemsHost="true"
+                                                      KeyboardNavigation.TabIndex="1" />
+
+                                            <local:PopupCard Grid.Column="2"
+                                                             VerticalAlignment="Center"
+                                                             DataContext="{Binding Path=SelectedItem.(ContentControl.Content).(local:BasePage.PopupMenu), RelativeSource={RelativeSource TemplatedParent}}"
+                                                             Visibility="{Binding Converter={local:InvertedObjectNullToVisibilityHiddenConverter}}"
+                                                             Margin="10">
+                                                <ContentPresenter Content="{Binding}"
+                                                                  MinWidth="200" />
+                                            </local:PopupCard>
+
+                                        </Grid>
+
+                                        <Border x:Name="ContentPanel"
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                ClipToBounds="{TemplateBinding ClipToBounds}"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                                KeyboardNavigation.TabIndex="2"
+                                                KeyboardNavigation.TabNavigation="Local"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                            <mah:TransitioningContentControl behaviours:ReloadBehavior.OnSelectedTabChanged="True"
+                                                                             RestartTransitionOnContentChange="True"
+                                                                             Transition="{TemplateBinding mah:TabControlHelper.Transition}"
+                                                                             UseLayoutRounding="True">
+                                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                                  Margin="{TemplateBinding Padding}"
+                                                                  ContentSource="SelectedContent"
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                  UseLayoutRounding="False" />
+                                            </mah:TransitioningContentControl>
+                                        </Border>
+                                    </Grid>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="mah:TabControlHelper.Underlined" Value="TabPanel">
+                                            <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                                            <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                            <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="1" />
+                                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                            <Setter TargetName="RowDefinition1" Property="Height" Value="Auto" />
+                                            <Setter TargetName="Underline" Property="Placement" Value="Top" />
+                                        </Trigger>
+                                        <Trigger Property="TabStripPlacement" Value="Left">
+                                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="Auto" />
+                                            <Setter TargetName="ColumnDefinition1" Property="Width" Value="*" />
+                                            <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1" />
+                                            <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                            <Setter TargetName="HeaderPanelGrid" Property="Grid.Column" Value="0" />
+                                            <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="0" />
+                                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                            <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                            <Setter TargetName="Underline" Property="Placement" Value="Right" />
+                                        </Trigger>
+                                        <Trigger Property="TabStripPlacement" Value="Right">
+                                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                                            <Setter TargetName="ColumnDefinition1" Property="Width" Value="Auto" />
+                                            <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0" />
+                                            <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                            <Setter TargetName="HeaderPanelGrid" Property="Grid.Column" Value="1" />
+                                            <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="0" />
+                                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                            <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                            <Setter TargetName="Underline" Property="Placement" Value="Left" />
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Foreground"
+                                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </mah:MetroAnimatedTabControl.Style>
+
+                <!-- Games -->
+
+                <TabItem Header="{Resx GamesPageHeader}"
+                         local:Icon.Kind="{StaticResource RCP.Icons.Games}"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Games}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Games}}">
+                    <games:GamesPage DataContext="{Binding Path=GamesPage, Mode=OneTime}" />
+                </TabItem>
+
+                <!-- Progression -->
+
+                <TabItem x:Name="ProgressionPageTab" 
+                         Header="{Resx Progression_Header}"
+                         local:Icon.Kind="{StaticResource RCP.Icons.Progression}"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Progression}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Progression}}">
+                    <progression:ProgressionPage DataContext="{Binding Path=ProgressionPage, Mode=OneTime}" />
+                </TabItem>
+
+                <!-- Utilities -->
+
+                <TabItem Header="{Resx UtilitiesPageHeader}"
+                         local:Icon.Kind="{StaticResource RCP.Icons.Utilities}"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Utilities}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Utilities}}">
+                    <utilities:UtilitiesPage DataContext="{Binding Path=UtilitiesPage, Mode=OneTime}" />
+                </TabItem>
+
+                <!-- Settings -->
+
+                <TabItem Header="{Resx SettingsPageHeader}"
+                         local:Icon.Kind="{StaticResource RCP.Icons.Settings}"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Settings}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Settings}}">
+                    <settings:SettingsPage DataContext="{Binding Path=SettingsPage, Mode=OneTime}" />
+                </TabItem>
+
+                <!-- About -->
+
+                <TabItem Header="{Resx AboutPageHeader}"
+                         local:Icon.Kind="{StaticResource RCP.Icons.Info}"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Info}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.About}}">
+                    <about:AboutPage DataContext="{Binding Path=AboutPage, Mode=OneTime}" />
+                </TabItem>
+
+                <!-- Debug -->
+
+                <TabItem Header="{Resx DebugPageHeader}"
+                         local:Icon.Kind="{StaticResource RCP.Icons.Debug}"
+                         local:Icon.Brush="{StaticResource RCP.Brushes.Debug}"
+                         IsSelected="{Binding Path=SelectedPage, Converter={local:EnumBooleanConverter}, ConverterParameter={x:Static local:AppPage.Debug}}"
+                         local:UserLevelAssist.MinUserLevel="Debug">
+                    <debug:DebugPage DataContext="{Binding Path=DebugPage, Mode=OneTime}" />
+                </TabItem>
+
+            </mah:MetroAnimatedTabControl>
+
+            <!-- Startup loading indicator (does not block UI) -->
+
+            <mah:ProgressRing HorizontalAlignment="Right"
+                              VerticalAlignment="Bottom"
+                              Margin="5"
+                              Visibility="{Binding Path=App.IsStartupRunning, Converter={local:BooleanToVisibilityConverter}}" />
+
+        </Grid>
+    </local:LoadingHost>
+</local:BaseWindow>

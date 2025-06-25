@@ -1,0 +1,84 @@
+﻿<rcp:BasePage x:Class="RayCarrot.RCP.Metro.Pages.Games.GamesPage"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+              xmlns:games="clr-namespace:RayCarrot.RCP.Metro.Pages.Games"
+              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+              ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+              IsTabStop="False"
+              mc:Ignorable="d"
+              d:DesignHeight="600" d:DesignWidth="900"
+              d:DataContext="{d:DesignInstance games:GamesPageViewModel}"
+              KeyDown="Page_Games_OnKeyDown">
+
+    <rcp:BasePage.PopupMenu>
+        <StackPanel ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+
+            <CheckBox Style="{StaticResource RCP.Styles.CheckBox.Default}"
+                      Content="{Resx Home_ShowRecentGames}"
+                      Margin="6"
+                      Background="{DynamicResource RCP.Brushes.Card.Popup}"
+                      IsChecked="{Binding Path=ShowRecentSetting}"/>
+
+            <Separator />
+
+            <Button rcp:Icon.Kind="Refresh"
+                    Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}"
+                    HorizontalContentAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Resx Page_Refresh}" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="F5"
+                               Margin="0 0 8 0" />
+
+                </Grid>
+            </Button>
+
+        </StackPanel>
+    </rcp:BasePage.PopupMenu>
+
+    <Control.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding Path=RefreshGamesCommand, Mode=OneTime}" />
+        <KeyBinding Key="F2" Command="{Binding Path=SelectedInstalledGame.RenameCommand}" />
+    </Control.InputBindings>
+
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="16" />
+            <ColumnDefinition Width="2.5*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Game selection -->
+        <rcp:Card Grid.Column="0">
+            <games:GameSelectionControl x:Name="GameSelectionControl" />
+        </rcp:Card>
+
+        <!-- Selected game hub -->
+        <rcp:Card Grid.Column="2"
+                  Padding="0">
+            <Grid>
+                <games:GameHubControl DataContext="{Binding Path=SelectedInstalledGame}"
+                                      Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}" />
+                <games:GamesHomeControl Visibility="{Binding Path=SelectedInstalledGame, Converter={rcp:ObjectNullToVisibilityConverter}}">
+                    <games:GamesHomeControl.Background>
+                        <ImageBrush ImageSource="HomeBackground.png" 
+                                    Stretch="UniformToFill" />
+                    </games:GamesHomeControl.Background>
+                </games:GamesHomeControl>
+            </Grid>
+        </rcp:Card>
+
+    </Grid>
+</rcp:BasePage>

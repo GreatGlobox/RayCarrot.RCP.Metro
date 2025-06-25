@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Settings.Sections.WindowsIntegrationSettingsSectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:sections="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings.Sections"
+             mc:Ignorable="d"
+             d:DesignWidth="500"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" 
+             d:DataContext="{d:DesignInstance sections:WindowsIntegrationSettingsSectionViewModel}">
+    <StackPanel>
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Settings_WindowsIntegration_FileAssociationsHeader}"
+                   Margin="0 0 0 4" />
+
+        <TextBlock Text="{Resx Settings_WindowsIntegration_FileAssociationsInfo}" 
+                   FontStyle="Italic" 
+                   TextWrapping="Wrap" 
+                   Margin="0 0 0 8" />
+
+        <ItemsControl ItemsSource="{Binding Path=FileAssociations, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Path=Name.Value}"
+                              IsEnabled="{Binding Path=CanAssociate}"
+                              IsChecked="{Binding Path=IsAssociated}"
+                              Command="{Binding Path=UpdateAssociationCommand, Mode=OneTime}"
+                              Margin="0 0 0 8" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                   Text="{Resx Settings_WindowsIntegration_UriAssociationsHeader}"
+                   Margin="0 0 0 4" />
+
+        <TextBlock Text="{Resx Settings_WindowsIntegration_UriAssociationsInfo}" 
+                   FontStyle="Italic" 
+                   TextWrapping="Wrap" 
+                   Margin="0 0 0 8" />
+
+        <ItemsControl ItemsSource="{Binding Path=UriAssociations, Mode=OneTime}"
+                      d:ItemsSource="{d:SampleData ItemCount=3}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Path=Name.Value}"
+                              IsEnabled="{Binding Path=CanAssociate}"
+                              IsChecked="{Binding Path=IsAssociated}"
+                              Command="{Binding Path=UpdateAssociationCommand, Mode=OneTime}"
+                              Margin="0 0 0 8" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </StackPanel>
+</UserControl>

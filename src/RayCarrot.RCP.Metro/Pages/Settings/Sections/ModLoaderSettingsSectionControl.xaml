@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Pages.Settings.Sections.ModLoaderSettingsSectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:sections="clr-namespace:RayCarrot.RCP.Metro.Pages.Settings.Sections"
+             mc:Ignorable="d"
+             d:DesignWidth="500"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             d:Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" 
+             d:DataContext="{d:DesignInstance sections:ModLoaderSettingsSectionViewModel}">
+    <StackPanel DataContext="{Binding Path=Data}">
+
+        <CheckBox Content="{Resx Settings_ModLoader_AutoCheckForUpdates}"
+                  IsChecked="{Binding Path=ModLoader_AutomaticallyCheckForUpdates}"
+                  Margin="0 0 0 8" />
+
+        <CheckBox Content="{Resx Settings_ModLoader_ShowFileConflictWarnings}"
+                  IsChecked="{Binding Path=ModLoader_ShowModConflictsWarning}"
+                  Margin="0 0 0 8" />
+
+        <!-- TODO-LOC -->
+        <CheckBox Content="Include downloadable mods marked as NSFW"
+                  ToolTip="Indicates if mods with a content rating, such as mods with nudity or violence, should be shown in the list of downloadable mods."
+                  IsChecked="{Binding Path=ModLoader_IncludeDownloadableNsfwMods}"
+                  Margin="0 0 0 8" />
+
+    </StackPanel>
+</UserControl>

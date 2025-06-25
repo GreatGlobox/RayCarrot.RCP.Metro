@@ -1,0 +1,121 @@
+﻿<local:WindowContentControl x:Class="RayCarrot.RCP.Metro.GameDebugDialog"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            d:DesignWidth="800" d:DesignHeight="600"
+                            mc:Ignorable="d"
+                            d:DataContext="{d:DesignInstance local:GameDebugViewModel}">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ComboBox Grid.Row="0"
+                  Margin="0 0 0 8"
+                  ItemsSource="{Binding Path=GameInstallations}"
+                  SelectedItem="{Binding Path=SelectedGameInstallation}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock DataContext="{Binding Path=DisplayName, Mode=OneTime}" 
+                               Text="{Binding Path=Value}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ScrollViewer x:Name="ContentScrollViewer" 
+                      Grid.Row="1">
+            <StackPanel>
+                <!-- Title -->
+                <local:GameTitle Margin="0 0 0 8"
+                                 GameInstallation="{Binding Path=SelectedGameInstallation.GameInstallation, Mode=OneTime}"
+                                 d:GameInstallation="{x:Static local:DesignData.GameInstallation}"
+                                 GameIconSize="{Binding Path=SelectedItem, ElementName=IconSizeComboBox}" 
+                                 TextBlock.FontSize="22" />
+
+                <!-- Icon size -->
+                <ComboBox x:Name="IconSizeComboBox"
+                          Margin="0 0 0 8"
+                          MinWidth="128"
+                          HorizontalAlignment="Left"
+                          ItemsSource="{Binding Path=IconSizes, Mode=OneTime}"
+                          SelectedItem="{x:Static local:GameIcon+GameIconSize.Large}"/>
+
+                <Separator Margin="0 0 0 8" />
+
+                <GroupBox Header="Descriptor" 
+                          local:Icon.Kind="{StaticResource RCP.Icons.Games}"
+                          local:Icon.Brush="{StaticResource RCP.Brushes.Games}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
+
+                    <local:JsonViewer Source="{Binding Path=GameDescriptorJToken}"
+                                      PreviewMouseWheel="JsonViewer_OnPreviewMouseWheel" />
+
+                </GroupBox>
+
+                <GroupBox Header="Data" 
+                          local:Icon.Kind="{StaticResource RCP.Icons.Settings}"
+                          local:Icon.Brush="{StaticResource RCP.Brushes.Settings}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
+
+                    <local:JsonViewer Source="{Binding Path=GameInstallationJToken}"
+                                      PreviewMouseWheel="JsonViewer_OnPreviewMouseWheel" />
+
+                </GroupBox>
+
+                <GroupBox Header="Components" 
+                          local:Icon.Kind="PowerPlugOutline"
+                          local:Icon.Brush="{StaticResource RCP.Brushes.Games}"
+                          Margin="{StaticResource RCP.Thicknesses.Card}">
+
+                    <!-- TODO: Improve component visualization. Show where they get registered from? Show priority? Show overriden components? -->
+                    <Grid>
+                        <Grid.Resources>
+                            <CollectionViewSource x:Key="ComponentsSource" Source="{Binding Path=Components}">
+                                <CollectionViewSource.GroupDescriptions>
+                                    <PropertyGroupDescription PropertyName="BaseType.Name" />
+                                </CollectionViewSource.GroupDescriptions>
+                            </CollectionViewSource>
+                        </Grid.Resources>
+
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource ComponentsSource}}">
+                            <ItemsControl.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                                            <StackPanel Orientation="Horizontal" 
+                                                        TextBlock.FontWeight="Bold"
+                                                        Margin="0 8 0 0">
+                                                <TextBlock Text="{Binding Path=Name, Mode=OneTime}" />
+                                                <TextBlock Text=" (" />
+                                                <TextBlock Text="{Binding Path=ItemCount, Mode=OneTime}" />
+                                                <TextBlock Text=")" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ItemsControl.GroupStyle>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="• " />
+                                        <TextBlock Text="{Binding Path=InstanceType.Name, Mode=OneTime}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </Grid>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</local:WindowContentControl>

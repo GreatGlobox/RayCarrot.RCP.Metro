@@ -1,0 +1,24 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="RayCarrot.RCP.Metro.App"
+			 xmlns:local="clr-namespace:RayCarrot.RCP.Metro.UI.Icons"
+			 xmlns:iconPacks="clr-namespace:IconPacks.Avalonia.MaterialDesign;assembly=IconPacks.Avalonia.MaterialDesign"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.Styles>
+		<FluentTheme />
+
+		<StyleInclude Source="avares://IconPacks.Avalonia.Material/Material.axaml" />
+	</Application.Styles>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Icons/Icons.axaml" />
+				<ResourceInclude Source="avares://RayCarrot.RCP.Avalonia/UI/Brushes/Brushes.axaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+
+</Application>

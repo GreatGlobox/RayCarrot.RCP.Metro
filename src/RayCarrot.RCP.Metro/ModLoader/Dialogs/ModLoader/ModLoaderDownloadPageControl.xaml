@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader.ModLoaderDownloadPageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:modLoader="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Dialogs.ModLoader"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:gameBanana="clr-namespace:RayCarrot.RCP.Metro.ModLoader.Sources.GameBanana"
+             mc:Ignorable="d"
+             d:DesignWidth="900" d:DesignHeight="600"
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DataContext="{d:DesignInstance modLoader:DownloadableModsViewModel}"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}">
+    <rcp:Card Margin="{StaticResource RCP.Thicknesses.Card}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.25*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Available mods -->
+            <Grid Grid.Column="0"
+                  Background="Transparent"
+                  MouseDown="ModsGrid_OnMouseDown">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <Grid Grid.Row="0" 
+                      Margin="0 0 0 8"
+                      Height="38">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- NOTE: For now we hard-code the GameBanana header since that's the only source right now. When/if we add
+                               more sources we will have to redesign the UI here to support that. -->
+                    <Image Grid.Column="0"
+                           Source="{Binding Path=DownloadableModsSources[0].Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}" 
+                           d:Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Assets/ModSourceIcons/GameBanana.png" 
+                           Width="32" 
+                           Margin="0 0 8 0"/>
+                    <TextBlock Grid.Column="1"
+                               Text="{Resx ModLoader_GameBanana_Title}" 
+                               Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                               VerticalAlignment="Center" />
+
+                    <rcp:InfoIcon Grid.Column="2"
+                                  Text="{Resx ModLoader_GameBanana_DownloadableModsInfo}" />
+
+                    <!-- Search box -->
+                    <TextBox Grid.Column="4"
+                             IsReadOnly="{Binding Path=IsLoading}"
+                             VerticalAlignment="Center"
+                             mah:TextBoxHelper.Watermark="{Resx ModLoader_Search}"
+                             mah:TextBoxHelper.ClearTextButton="{Binding Path=CurrentFeedType, Converter={rcp:EnumBooleanConverter}, ConverterParameter={x:Static modLoader:DownloadableModsViewModel+FeedType.Search}}"
+                             mah:TextBoxHelper.ButtonCommand="{Binding Path=RefreshCommand, Mode=OneTime}"
+                             Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}"
+                             BorderThickness="0" 
+                             Margin="8 0 4 0">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SearchCommand, Mode=OneTime}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+
+                    <rcp:PopupCard Grid.Column="5"
+                                   Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
+                                   Height="{Binding ElementName=RefreshButton, Path=ActualHeight}"
+                                   Visibility="{Binding Path=HasCategories, Converter={rcp:BooleanToVisibilityConverter}}"
+                                   IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                                   Margin="0 0 4 0">
+                        <ListBox ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+                                 IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                                 Background="Transparent"
+                                 ItemsSource="{Binding Path=Categories, Mode=OneTime}"
+                                 SelectedItem="{Binding Path=SelectedCategory}"
+                                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.RadioButton}"
+                                 Margin="6">
+                            <ListBox.Resources>
+                                <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                    <Setter Property="Command" Value="{Binding Path=DataContext.SelectCategoryCommand, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" />
+                                </Style>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0"
+                                               Source="{Binding Path=IconUrl, Mode=OneTime}"
+                                               Visibility="{Binding Path=IconUrl, Converter={rcp:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                               Width="32" Height="32"
+                                               Margin="0 0 4 0" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   Text="{Binding Path=Name, Mode=OneTime}" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </rcp:PopupCard>
+
+                    <!-- Refresh button -->
+                    <Button x:Name="RefreshButton" 
+                            Click="RefreshButton_OnClick"
+                            Grid.Column="6"
+                            IsEnabled="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanConverter}}"
+                            Style="{StaticResource RCP.Styles.Button.Flat}"
+                            rcp:Icon.Kind="Refresh"
+                            Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
+                            ToolTip="{Resx ModLoader_RefreshDownloadableMods}"
+                            Command="{Binding Path=RefreshCommand, Mode=OneTime}" />
+
+                    <!-- Loading indicator -->
+                    <mah:ProgressRing Grid.Column="6"
+                                      Visibility="{Binding Path=IsLoading, Converter={rcp:BooleanToVisibilityConverter}}"
+                                      d:Visibility="Collapsed"
+                                      Width="{Binding ElementName=RefreshButton, Path=ActualWidth}"
+                                      Height="{Binding ElementName=RefreshButton, Path=ActualHeight}" />
+
+                </Grid>
+
+                <!-- Info -->
+                <Grid Grid.Row="1"
+                      Margin="0 0 0 4"
+                      Visibility="{Binding Path=IsLoading, Converter={rcp:InvertedBooleanToVisibilityConverter}}">
+                    <TextBlock Text="{Binding Path=FeedInfoText.Value}"
+                               Visibility="{Binding Path=FeedInfoText, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                               d:Text="Showing mods in the category &quot;Fixed/Improvements&quot;" FontStyle="Italic" />
+                </Grid>
+                
+                <!-- NOTE: Disabled virtualizing for now due to the SharedSizeScope causing the UI to jump around with it -->
+                <!-- Mods -->
+                <ListBox Grid.Row="2"
+                         Grid.IsSharedSizeScope="True"
+                         Loaded="ModsListBox_OnLoaded"
+                         ItemsSource="{Binding Path=ModsFeed.Mods, Mode=OneTime}"
+                         d:ItemsSource="{d:SampleData ItemCount=5}"
+                         SelectedItem="{Binding Path=SelectedMod}"
+                         d:SelectedIndex="1"
+                         VerticalAlignment="Top"
+                         Background="Transparent"
+                         ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.Flat}"
+                         VirtualizingPanel.IsVirtualizing="False"
+                         VirtualizingPanel.ScrollUnit="Pixel"
+                         VirtualizingPanel.VirtualizationMode="Recycling"
+                         ScrollViewer.ScrollChanged="ModsScrollViewer_OnScrollChanged"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding Mode=OneTime}">
+                                <ContentPresenter.Resources>
+                                    <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                                        <gameBanana:GameBananaDownloadableModItemControl />
+                                    </DataTemplate>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <!-- Empty text -->
+            <Viewbox Grid.Column="0"
+                     Grid.ColumnSpan="2" 
+                     Visibility="{Binding Path=ModsFeed.IsEmpty, Converter={rcp:BooleanToVisibilityConverter}}"
+                     d:Visibility="Collapsed">
+                <TextBlock Text="{Resx ModLoader_DownloadableModsEmpty}"
+                           TextAlignment="Center" 
+                           Margin="30" 
+                           Opacity="0.5" />
+            </Viewbox>
+
+            <!-- Error message -->
+            <Grid Grid.Column="0"
+                  Grid.ColumnSpan="2" 
+                  Margin="30"
+                  Visibility="{Binding Path=ModsFeed.ErrorMessage, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                  HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <iconPacks:PackIconMaterial Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            Kind="InformationOutline" 
+                                            Foreground="{StaticResource RCP.Brushes.Warning}"
+                                            Margin="0 0 4 0" />
+
+                <TextBlock Grid.Column="1" 
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Text="{Binding Path=ModsFeed.ErrorMessage}"
+                           d:Text="Error message"/>
+
+            </Grid>
+
+            <!-- Selected mod -->
+            <rcp:Card Grid.Column="1"
+                      DataContext="{Binding Path=SelectedMod}"
+                      Visibility="{Binding Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                      d:Visibility="Visible"
+                      Margin="{StaticResource RCP.Thicknesses.Card}" 
+                      Background="{DynamicResource RCP.Brushes.Card.SecondaryBackground}">
+
+                <ContentPresenter Content="{Binding Mode=OneTime}">
+                    <ContentPresenter.Resources>
+                        <DataTemplate DataType="{x:Type gameBanana:GameBananaDownloadableModViewModel}">
+                            <gameBanana:GameBananaDownloadableModPanelControl />
+                        </DataTemplate>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
+
+            </rcp:Card>
+
+        </Grid>
+    </rcp:Card>
+</UserControl>

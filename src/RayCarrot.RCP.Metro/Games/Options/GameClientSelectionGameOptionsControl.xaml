@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Games.Options.GameClientSelectionGameOptionsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:rcp="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:options="clr-namespace:RayCarrot.RCP.Metro.Games.Options"
+             ResxExtension.DefaultResxName="{x:Static rcp:LocalizationManager.ResourcePath}"
+             mc:Ignorable="d" 
+             d:Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             d:Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             d:DataContext="{d:DesignInstance options:GameClientSelectionGameOptionsViewModel}">
+    <StackPanel Margin="6">
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="0 0 0 4">
+
+            <TextBlock Style="{StaticResource RCP.Styles.TextBlock.Header}"
+                       Text="{Resx GameClients_SelectionHeader}" />
+
+            <rcp:InfoIcon Text="{Resx GameClients_SelectionInfo}" />
+
+        </StackPanel>
+
+
+        <ListBox ItemsSource="{Binding Path=GameClients}"
+                 SelectedItem="{Binding Path=SelectedGameClient}"
+                 d:ItemsSource="{d:SampleData ItemCount=3}"
+                 ItemContainerStyle="{StaticResource RCP.Styles.ListBoxItem.RadioButton}"
+                 Margin="0 0 0 -4"
+                 Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0"
+                               Width="16"
+                               Source="{Binding Path=Icon, Mode=OneTime, Converter={rcp:AssetEnumToImageSourceConverter}}"
+                               Visibility="{Binding Path=Icon, Converter={rcp:InvertedObjectNullToVisibilityConverter}}"
+                               d:Source="{x:Static rcp:DesignData.GameClientIconSource}"
+                               Margin="0 0 4 0" />
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Path=DisplayName.Value}"
+                                   d:Text="DOSBox"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center" />
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </StackPanel>
+</UserControl>
